@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Crete+Round&family=Merriweather+Sans:wght@300&family=Roboto:wght@300&display=swap');
+
+
+
+#dropdownMenuButtonFavorite{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: black;
+    background-color: #F5D949;
+    font-family: 'Belanosima', sans-serif; 
+    font-weight: 600;
+}
+
+.button-drop-down{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    margin-right: 30px;
+}
+
+.container-title{
+    margin-left: 30px;
+}
+
+.container-cards{
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 73vh;
+    max-width: 1890px;
+    width: 100%;
+    position: relative;
+    right: 17px;
+}
+
+
+#carousel-cards{
+    list-style: none;
+    border-radius: 9px;
+    background-color:#1D1E1F;
+    color:#F5D949 ;
+}
+
+.characters-title{
+    font-family: 'Belanosima', sans-serif;
+    font-weight: 700;
+    color: white;
+    margin-left: 30px;
+}
+
+
+.card-title {
+    margin-left: 5px;
+}
+
+.card-text{
+    margin-left: 5px;
+}
+
+
+.butonCards{
+    display: flex;
+    justify-content: space-between;
+}
+
+.learn-more {
+    color: black;
+    background-color: #ffd500;
+    padding: 6px;
+    border-radius: 10px;
+}
+
+.learn-more:hover {
+    color: black;
+    background-color: rgb(255, 237, 150);
+}
+
+.favorite-icon{
+    padding: 6px;
+    color: black;
+    background-color: #F5D949;
+    border-radius: 10px;
+}
+
+.favorite-icon:hover {
+    color: black;
+    background-color: rgb(255, 237, 150);
+}
+
+a{
+    text-decoration: none;
+    box-shadow: none;
+}
+
+.cards-characters{
+    font-family: 'Belanosima', sans-serif;
+    margin-left: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.card-title{
+    font-family: 'Belanosima', sans-serif;
+    font-weight: 700;
+}
+
+.allContentCard{
+    font-family: 'Belanosima', sans-serif;
+    font-weight: 400;
+}
+
+
+/*  */
+
+
+.container-cards .carousel-cards-wrapper{
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100%/3)-12px);
+    gap:16px;
+    overflow: hidden;
+    margin-top: -40px;
+    color: white;
+}
+
+.container-cards i{
+    background: white;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    font-size: 1.25rem;
+    top: 40%;
+    transform: translateY(-50%);
+    box-shadow: 0 15px 20px rgb(0, 0, 0,0.40);
+}
+
+
+.container-cards i:first-child{
+    right: 1800px;
+    z-index: 1;
+    
+}
+
+
+.container-cards i:last-child{
+    right: -3px;
+}
+
+
+@media screen and (max-width:900px){
+    .container-cards .carousel-cards-wrapper{
+       
+        grid-auto-columns: calc((100%/3)-12px);
+       
+    }
+    
+}

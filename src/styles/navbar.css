@@ -1,0 +1,253 @@
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(0, 0, 0);
+    width: 100%;
+    border-bottom: 1px solid #48494A;
+}
+
+
+.logoStarWars{
+    margin-left: 25%;
+}
+
+.imageLogoStarwars{
+    height: 35%;
+    width: 30%;
+}
+
+.kidsIcon{
+    height: 35px;
+    width: 30px;
+}
+
+.tikTokIcon{
+    height: 18px;
+    width: 18px;
+    font-size: 10px;
+
+}
+
+.instagramIcon{
+    color: white;
+
+}
+
+.twitterIcon{
+    color: white;
+
+}
+
+.facebookIcon{
+    color: white;
+}
+
+.youtubeIcon{
+    color: white;  
+}
+   
+
+.breadcrumbs-logos{
+    text-align: left;
+}
+ 
+.breadcrumbs-logos li{
+ display: inline;
+ color: white;
+} 
+
+
+.breadcrumbs-logos a{
+    position: relative;
+    margin-right: 10px;
+    padding: 0 3px;
+    display: inline;
+}
+
+
+.breadcrumbs-logos li.starwars-tv-kids::before{
+    color: #48494A;
+    font-size: 2.5rem;
+    content: "|";
+    margin-left: 5px;
+    margin-right: 10px;
+   } 
+
+.login-icon{
+    color: white;
+    margin-right: 13%;
+    font-size: 5rem;
+}
+
+.search-icon{
+    color: white;
+    margin-right: 10%;
+    font-size: 10rem;
+
+}
+
+.container-search-login{
+    display: flex;
+    padding: 3%;
+    margin-right: 2%;
+    color: white;
+}
+
+.login-container{
+    display: flex;
+    margin-right: 20%;
+}
+
+
+
+.search-container{
+    display: flex;
+    margin-right: 20%;
+
+}
+
+
+
+/* Media Queries */ 
+
+
+/* Laptops */
+
+@media screen and (max-width:1558px){
+   
+    
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(0, 0, 0);
+    width: 100%;
+    border-bottom: 1px solid #48494A;
+}
+
+
+.logoStarWars{
+    margin-left: 25%;
+}
+
+.imageLogoStarwars{
+    height: 35%;
+    width: 30%;
+}
+
+.kidsIcon{
+    height: 35px;
+    width: 30px;
+}
+
+.tikTokIcon{
+    height: 18px;
+    width: 18px;
+    font-size: 10px;
+
+}
+
+.instagramIcon{
+    color: white;
+
+}
+
+.twitterIcon{
+    color: white;
+
+}
+
+.facebookIcon{
+    color: white;
+}
+
+.youtubeIcon{
+    color: white;  
+}
+   
+
+.breadcrumbs-logos{
+    text-align: left;
+}
+ 
+.breadcrumbs-logos li{
+ display: inline;
+ color: white;
+} 
+
+
+.breadcrumbs-logos a{
+    position: relative;
+    margin-right: 10px;
+    padding: 0 3px;
+    display: inline;
+}
+
+
+.breadcrumbs-logos li.starwars-tv-kids::before{
+    color: #48494A;
+    font-size: 2.5rem;
+    content: "|";
+    margin-left: 5px;
+    margin-right: 10px;
+   } 
+
+.login-icon{
+    color: white;
+    margin-right: 13%;
+    font-size: 5rem;
+}
+
+.search-icon{
+    color: white;
+    margin-right: 10%;
+    font-size: 10rem;
+
+}
+
+.container-search-login{
+    display: flex;
+    padding: 3%;
+    margin-right: 2%;
+    color: white;
+}
+
+.login-container{
+    display: flex;
+    margin-right: 20%;
+}
+
+
+
+.search-container{
+    display: flex;
+    margin-right: 20%;
+
+}
+}
+
+
+
+/* Tablets */ 
+/* @media screen and (max-width:768px){
+    .breadcrumbs-logos li{
+        float: right;
+    } 
+    .navbar{
+        background-color: rgb(238, 21, 21);
+        width: 100%;
+    }
+}
+
+
+/* Mobiles */ 
+
+/* @media screen and (max-width:48px){
+    .breadcrumbs-logos li{
+        float: right;
+    } 
+    .navbar{
+        background-color: rgb(238, 21, 21);
+        width: 100%;
+    }
+} */
