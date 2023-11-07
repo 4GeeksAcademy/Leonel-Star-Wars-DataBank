@@ -48,18 +48,34 @@ const Characters = () => {
     }
     //
     useEffect(() => {
-        const getCharacters = async () => {
-            try {
-                await actions.getTotalCharacters()
-                // console.log(store.totalRecordsCharacters)
-                console.log(`Conseguimos efectivamente los characters ${store.totalRecordsCharacters}`)
-            }
-            catch (e) {
-                console.log(e, 'Error')
-            }
-        }
         getCharacters()
+        // getPropertiesCharacters()
     }, [])
+
+    const getCharacters = async () => {
+        try {
+            await actions.getTotalCharacters()
+            // console.log(store.totalRecordsCharacters)
+            console.log(`Conseguimos efectivamente los characters ${store.totalAmountCharacters}`)
+        }
+        catch (e) {
+            console.log(e, 'Error')
+        }
+    }
+
+    // const getPropertiesCharacters = async () => {
+    //     try {
+    //         await actions.getAllCharacters()
+    //         // console.log(store.totalRecordsCharacters)
+    //         // console.log(`Conseguimos efectivamente los characters ${store.totalRecordsCharacters}`)
+    //     }
+    //     catch (e) {
+    //         console.log(e, 'Error')
+    //     }
+    // }
+
+
+
 
 
 
@@ -74,12 +90,13 @@ const Characters = () => {
 
                 <ul className='carousel-cards-wrapper'>
                     <Carousel
-                        // customLeftArrow={customLeftArrowFunction}
-                        // customRightArrow={<NavigateNextIcon />}
+                        customLeftArrow={<CustomLeftArrow />}
+                        customRightArrow={<CustomRightArrow />}
                         swipeable={false}
                         draggable={false}
                         showDots={false}
                         infinite={false}
+
                         // autoPlay={this.props.deviceType != "mobile" ? true : false}
                         // autoPlaySpeed={1000}
                         // customTransition='all 10'
@@ -115,8 +132,6 @@ const Characters = () => {
                                         </div>
                                     </li>
                                 )
-
-
                             })
                         }
                     </Carousel>
