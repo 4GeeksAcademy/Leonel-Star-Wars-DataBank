@@ -2,27 +2,20 @@
 
 
 
-#dropdownMenuButtonFavorite{
-    margin-top: 10px;
-    margin-bottom: 10px;
-    color: black;
-    background-color: #F5D949;
-    font-family: 'Belanosima', sans-serif; 
-    font-weight: 600;
-}
-
-.button-drop-down{
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
-    margin-right: 30px;
+.container-fluid-body{
+    width: 100%;
 }
 
 .container-title{
+    margin-top: 60px;
     margin-left: 30px;
 }
 
-.container-cards{
+/* .container-cards{
+  
+} */
+
+/* .container-cards{
     
     display: flex;
     align-items: center;
@@ -31,8 +24,9 @@
     max-width: 1890px;
     width: 100%;
     position: relative;
-    right: 17px;
-}
+    left: 10px;
+   
+} */
 
 
 #carousel-cards{
@@ -58,6 +52,9 @@
     margin-left: 5px;
 }
 
+.card-img-top{
+    height: 22rem;
+}
 
 .butonCards{
     display: flex;
@@ -88,10 +85,10 @@
     background-color: rgb(255, 237, 150);
 }
 
-a{
+/* a{
     text-decoration: none;
     box-shadow: none;
-}
+} */
 
 .cards-characters{
     font-family: 'Belanosima', sans-serif;
@@ -111,10 +108,7 @@ a{
 }
 
 
-/*  */
-
-
-.container-cards .carousel-cards-wrapper{
+/* .container-cards .carousel-cards-wrapper{
     display: grid;
     grid-auto-flow: column;
     grid-auto-columns: calc((100%/3)-12px);
@@ -122,9 +116,9 @@ a{
     overflow: hidden;
     margin-top: -40px;
     color: white;
-}
+} */
 
-.container-cards i{
+/* .container-cards i{
     background: white;
     width: 50px;
     height: 50px;
@@ -137,26 +131,29 @@ a{
     top: 40%;
     transform: translateY(-50%);
     box-shadow: 0 15px 20px rgb(0, 0, 0,0.40);
-}
+} */
 
 
-.container-cards i:first-child{
-    right: 1800px;
+
+/* .container-cards i:first-child{
+    left: 23px;
     z-index: 1;
-    
 }
-
 
 .container-cards i:last-child{
-    right: -3px;
-}
+    right: -9px;
+} */
 
 
-@media screen and (max-width:900px){
+/* @media screen and (max-width:900px){
     .container-cards .carousel-cards-wrapper{
-       
-        grid-auto-columns: calc((100%/3)-12px);
-       
+        grid-auto-columns: calc((100%/2)-9px);
     }
     
 }
+
+@media screen and (max-width:600px){
+    .container-cards .carousel-cards-wrapper{
+        grid-auto-columns: 100%;
+    }
+} */ 

@@ -31,6 +31,16 @@ const Navbar = () => {
                     <LoginIcon className="login-icon" /><p>SIGN</p>&nbsp;<p>IN</p>
                 </div>
             </div>
+            <div className='button-drop-down'>
+                <div className="dropdown">
+                    <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonFavorite" data-bs-toggle="dropdown" aria-expanded="false">
+                        Favorites
+                    </button>
+                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                   
+                    </ul>
+                </div>
+            </div>
         </div>
     )
 }
