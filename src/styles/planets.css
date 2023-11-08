@@ -2,12 +2,12 @@
 
 
 
-.container-fluid-body{
+.container-fluid-body-planets{
     width: 100%;
     height: fit-content;
 }
 
-.container-title{
+.container-title-planets{
     margin-top: 60px;
     margin-left: 30px;
 }
@@ -30,14 +30,14 @@
 } */
 
 
-#carousel-cards{
+#carousel-cards-planets{
     list-style: none;
     border-radius: 9px;
     background-color:#1D1E1F;
     color:#F5D949 ;
 }
 
-.characters-title{
+.characters-title-planets{
     font-family: 'Belanosima', sans-serif;
     font-weight: 700;
     color: white;
@@ -45,75 +45,75 @@
 }
 
 
-.card-title {
+.card-title-planets{
     margin-left: 5px;
 }
 
-.card-text{
+.card-text-planets{
     margin-left: 5px;
 }
 
-.card-img-top{
+.card-img-top-planets{
     height: 22rem;
 }
 
-.butonCards{
+.butonCards-planets{
     display: flex;
     justify-content: space-between;
 }
 
-.learn-more {
+.learn-more-planets{
     color: black;
     background-color: #ffd500;
     padding: 6px;
     border-radius: 10px;
 }
 
-.learn-more:hover {
+.learn-more-planets:hover{
     color: black;
     background-color: rgb(255, 237, 150);
 }
 
-.favorite-icon{
+.favorite-icon-planets{
     padding: 6px;
     color: black;
     background-color: #F5D949;
     border-radius: 10px;
 }
 
-.favorite-icon:hover {
+.favorite-icon-planets:hover {
     color: black;
     background-color: rgb(255, 237, 150);
 }
 
 
-.cards-characters{
+.cards-characters-planets{
     font-family: 'Belanosima', sans-serif;
     margin-left: 30px;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-.card-title{
+.card-title-planets{
     font-family: 'Belanosima', sans-serif;
     font-weight: 700;
 }
 
-.allContentCard{
+.allContentCard-planets{
     font-family: 'Belanosima', sans-serif;
     font-weight: 400;
 }
 
 
-.disable-button-left{
+.disable-button-left-planets{
     display: none;
 }
 
-.disable-button-right{
+.disable-button-right-planets{
     display: none;
 }
 
-.button-custom-left{
+.button-custom-left-planets{
     border-radius: 50%;
     position: absolute;
     box-shadow: 0 15px 20px rgb(0, 0, 0,0.40);
@@ -126,7 +126,7 @@
 
 }
 
-.button-custom-right{
+.button-custom-right-planets{
     border-radius: 50%;
     position: absolute;
     box-shadow: 0 15px 20px rgb(0, 0, 0,0.40);
