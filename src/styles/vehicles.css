@@ -2,59 +2,60 @@
 
 
 
-.container-fluid-body-planets{
+.container-fluid-body-vehicles{
     width: 100%;
     height: fit-content;
 }
 
-.container-title-planets{
+.container-title-vehicles{
     margin-top: 60px;
     margin-left: 30px;
 }
 
 
-#carousel-cards-planets{
+#carousel-cards-vehicles{
     list-style: none;
     border-radius: 9px;
     background-color:#1D1E1F;
     color:#F5D949 ;
 }
 
-.characters-title-planets {
+.characters-title-vehicles {
     font-family: 'Belanosima', sans-serif;
     font-weight: 700;
     color: white;
     margin-left: 30px;
 }
 
-.card-body-planets{
+.card-body-vehicles{
     margin-top: 12px;
 }
-.card-title-planets {
+.card-title-vehicles {
     margin-left: 20px;
 }
 
-.card-text-planets {
+.card-text-vehicles {
     margin-left: 20px;
 }
 
-.card-img-top-planets {
+.card-img-top-vehicles {
     height: 22rem;
 }
 
-.allContentCard-planets{
+
+.allContentCard-vehicles{
     font-family: 'Belanosima', sans-serif;
     font-weight: 400;
 }
 
-.butonCards-planets{
+.butonCards-vehicles{
     display: flex;
     justify-content: space-between;
     padding-top: 8px;
     padding-bottom: 15px;
 }
 
-.learn-more-planets {
+.learn-more-vehicles {
     color: black;
     background-color: #ffd500;
     padding: 6px;
@@ -63,12 +64,12 @@
 
 }
 
-.learn-more-planets:hover {
+.learn-more-vehicles:hover {
     color: black;
     background-color: rgb(255, 237, 150);
 }
 
-.favorite-icon-planets{
+.favorite-icon-vehicles{
     padding: 6px;
     color: black;
     background-color: #F5D949;
@@ -77,20 +78,20 @@
 
 }
 
-.favorite-icon-planets:hover {
+.favorite-icon-vehicles:hover {
     color: black;
     background-color: rgb(255, 237, 150);
 }
 
 
-.cards-characters-planets{
+.cards-characters-vehicles{
     font-family: 'Belanosima', sans-serif;
     margin-left: 30px;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-.card-title-planets{
+.card-title-vehicles{
     font-family: 'Belanosima', sans-serif;
     font-weight: 700;
 }
@@ -98,15 +99,15 @@
 
 
 
-.disable-button-left-planets{
+.disable-button-left-vehicles{
     display: none;
 }
 
-.disable-button-right-planets{
+.disable-button-right-vehicles{
     display: none;
 }
 
-.button-custom-left-planets{
+.button-custom-left-vehicles{
     border-radius: 50%;
     position: absolute;
     box-shadow: 0 15px 20px rgb(0, 0, 0,0.40);
@@ -114,12 +115,12 @@
     height: 50px;
     background-color: rgba(0, 0,0, 0.5);
     color:   #F5D949;
-    top: 125%;
+    top: 195%;
     left: 0.9%;
 
 }
 
-.button-custom-right-planets{
+.button-custom-right-vehicles{
     border-radius: 50%;
     position: absolute;
     box-shadow: 0 15px 20px rgb(0, 0, 0,0.40);
@@ -127,7 +128,7 @@
     height: 50px;
     background-color: rgba(0, 0,0, 0.5);
     color:   #F5D949;
-    top: 125%;
+    top: 195%;
     right: 2%
 }
 

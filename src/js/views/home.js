@@ -4,6 +4,7 @@ import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 import Characters from "./Characters";
 import Planets from "./Planets";
+import Vehicles from "./Vehicles";
 
 export const Home = () => (
 	<div className="container-fluid">
@@ -15,6 +16,10 @@ export const Home = () => (
 		</div>
 		<div className="container-planets">
 			<Planets />
+		</div>
+
+		<div className="container-vehicles">
+			<Vehicles />
 		</div>
 	</div>
 );

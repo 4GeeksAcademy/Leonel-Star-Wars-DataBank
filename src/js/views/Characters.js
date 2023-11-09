@@ -44,7 +44,6 @@ const Characters = () => {
     }
     //
     useEffect(() => {
-        // getCharacters()
         getPropertiesCharacters()
     }, [])
 
@@ -81,7 +80,8 @@ const Characters = () => {
                 <button className={currentSlide === 0 ? 'disable-button-left' : 'button-custom-left'}
                     onClick={() => previous()}
                 > <NavigateBeforeIcon /></button>
-                <button className={currentSlide + 3 === store.allCharactersProperties.length - 1 ? 'disable-button-right' : 'button-custom-right'}
+                <button className={(currentSlide + 3 === store.allCharactersProperties.length - 1) || (store.limitOfCharacters.length > 0)
+                    ? 'disable-button-right' : 'button-custom-right'}
                     onClick={() => {
                         console.log(currentSlide)
                         next();
@@ -138,7 +138,11 @@ const Characters = () => {
                                                             <p className="card-text"> Height:  {elements.properties.height} </p>
                                                             <div className='butonCards'>
                                                                 <button className="learn-more">Learn More</button>
-                                                                <button className='favorite-icon'><FavoriteIcon /></button>
+                                                                <button className='favorite-icon'
+                                                                    onClick={() => {
+                                                                        handleFavoriteIcons()
+                                                                    }}
+                                                                ><FavoriteIcon /></button>
                                                             </div>
                                                         </div>
                                                     </div>

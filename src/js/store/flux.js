@@ -3,18 +3,25 @@ import { json } from "react-router";
 
 
 const getState = ({ getStore, getActions, setStore }) => {
-	// people, vehicles and planets entities
 	return {
 		store: {
+
 			characters: [],
+			pageVehicles: 1,
 			countGetCharacters: 1,
 			countGetPlanets: 1,
+			countGetVehiclesPages: 0,
+			countVehiclesNewPage: 0,
 			totalPagesCharacters: 0,
-			totalAmountCharacters: 0,
 			allCharactersProperties: [],
+			limitsOfVehicles: 0,
+			limitOfCharacters: '',
+			limitOfPlantes: '',
 			allPlanetsProperties: [],
-			allCharactersShow: [],
-			urlApi: "",
+			allVehiclesProperties: [],
+			favoritesCharacters: [],
+			favoritePlanets: [],
+			favoriteVehicles: [],
 		},
 		actions: {
 			// ////////////////////// tenerlo y revisarlo por si acaso // //////////////////////
@@ -109,6 +116,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							const jsonReponse = await response.json()
 							if (Object.keys(jsonReponse).length > 0) {
 								console.log(jsonReponse.message)
+								storeForCharacters.limitOfCharacters = jsonReponse.message
 								console.log('You reached all the characters!')
 								break
 							}
@@ -125,9 +133,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				} while (count <= stopFetch)
 
-				console.log(charactersAllData)
+				// console.log(charactersAllData)
 				//in this part im rewritting the characters that im reaching!
 				setStore({ ...storeForCharacters, allCharactersProperties: charactersAllData })
+				// console.log(storeForCharacters.allCharactersProperties)
 			},
 
 			///GET FOR PLANETS
@@ -165,12 +174,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 							planetsAllData.push(jsonReponse.result)
 							storeForPlanets.countGetPlanets += 1
 							count += 1
+							console.log(jsonReponse.result)
 						}
 						else {
 							const jsonReponse = await response.json()
 							if (Object.keys(jsonReponse).length > 0) {
-								console.log(jsonReponse.message)
+								console.log('planets')
+								console.log(jsonReponse.messsage)
 								console.log('You reached all the planets!')
+								storeForPlanets.limitOfPlantes = jsonReponse.messsage
 								break
 							}
 
@@ -188,8 +200,86 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 				//in this part im rewritting the characters that im reaching!
-				setStore({ ...storeForCharacters, allPlanetsProperties: planetsAllData })
+				setStore({ ...storeForPlanets, allPlanetsProperties: planetsAllData })
+				// console.log(storeForPlanets.allPlanetsProperties)
+
+			},
+
+			///GET FOR VEHICLES
+
+			getAllVehicles: async () => {
+				const storeForVehicles = getStore()
+				let count = 1
+				//starts with [] but in the end of the bucle im adding the new characters!
+				const vehiclesAllData = [...storeForVehicles.allVehiclesProperties]
+				let stopFetch = 0
+				do {
+					if (Object.keys(storeForVehicles.allVehiclesProperties).length > 0) {
+						//this IF helps me to call the api one time once I got the first five characters!
+						stopFetch = 1
+						// console.log(storeForVehicles.countGetVehiclesPages)
+						if (storeForVehicles.countVehiclesNewPage > 9) {
+							storeForVehicles.pageVehicles += 1
+							count = 1
+							storeForVehicles.countVehiclesNewPage = 0
+							console.log('entramos a una nueva pagina!')
+							storeForVehicles.countGetVehiclesPages = 0
+						}
+					}
+					else {
+						//Getting the first 5 Vehicles
+						stopFetch = 5
+					}
+					let url = `https://www.swapi.tech/api/vehicles?page=${storeForVehicles.pageVehicles}&limit=10`
+					console.log(url)
+					try {
+						console.log(count)
+						const response = await fetch(url, {
+							method: 'GET',
+							headers: {
+								'Content-type': 'aplication/json'
+							}
+						})
+
+						if (response.ok) {
+
+							const jsonReponse = await response.json()
+							vehiclesAllData.push(jsonReponse.results[storeForVehicles.countGetVehiclesPages])
+							storeForVehicles.countGetVehiclesPages += 1
+							count += 1
+							storeForVehicles.countVehiclesNewPage += 1
+
+							storeForVehicles.limitsOfVehicles = jsonReponse.total_records
+							// console.log(storeForVehicles.limitsOfVehicles)
+						}
+						else {
+							const jsonReponse = await response.json()
+							let limitOfPages = jsonReponse.total_pages
+							if (page > limitOfPages) {
+								console.log(jsonReponse.message)
+								console.log('You reached all the vehicles!')
+								break
+							}
+
+							else {
+								throw new Error('The requested it was fail! Check it out!')
+							}
+						}
+					}
+
+					catch (error) {
+						console.log('Requested Failed', error)
+						console.log('entro a este error?')
+					}
+				} while (count <= stopFetch)
+
+
+				//in this part im rewritting the characters that im reaching!
+				setStore({ ...storeForVehicles, allVehiclesProperties: vehiclesAllData })
+				console.log(`esta es la cantidad de carros por ahora! ${storeForVehicles.allVehiclesProperties.length - 1}`)
 			}
+
+
 
 		}
 	};

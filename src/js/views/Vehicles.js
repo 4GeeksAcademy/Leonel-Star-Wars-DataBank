@@ -6,12 +6,12 @@ import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import { Footer } from '../component/footer';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import '../../styles/planets.css'
+import '../../styles/vehicles.css'
 
-const Planets = () => {
+const Vehicles = () => {
     const { store, actions } = useContext(Context)
-    let count = 0
 
+    let count = 0
     const responsive = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
@@ -42,16 +42,13 @@ const Planets = () => {
     }
     //
     useEffect(() => {
-
-        getPropertiesPlanets()
+        getPropertiesVehicles()
 
     }, [])
-
-
-
-    const getPropertiesPlanets = async () => {
+    let limitVehicles = store.limitsOfVehicles
+    const getPropertiesVehicles = async () => {
         try {
-            await actions.getAllPlanets()
+            await actions.getAllVehicles()
         }
         catch (e) {
             console.log(e, 'Error')
@@ -60,18 +57,18 @@ const Planets = () => {
 
     const ButtonGroup = ({ next, previous, goToSlide, onClick, ...rest }) => {
         const handleClick = () => {
-            getPropertiesPlanets()
+            getPropertiesVehicles()
             next()
         }
         const { carouselState: { currentSlide } } = rest;
         return (
-            <div className='carousel-button-group-planets'>
-                <button className={currentSlide === 0 ? 'disable-button-left-planets' : 'button-custom-left-planets'}
+            <div className='carousel-button-group-vehicles'>
+                <button className={currentSlide === 0 ? 'disable-button-left-vehicles' : 'button-custom-left-vehicles'}
                     onClick={() => previous()}
                 > <NavigateBeforeIcon /></button>
                 <button className={
-                    (currentSlide + 3 === store.allPlanetsProperties.length - 1) || (store.limitOfPlantes.length > 0)
-                        ? 'disable-button-right-planets' : 'button-custom-right-planets'}
+                    (currentSlide + 3 === store.allVehiclesProperties.length - 1) || (currentSlide + 3 === limitVehicles - 1)
+                        ? 'disable-button-right-vehicles' : 'button-custom-right-vehicles'}
                     onClick={() => {
                         console.log(currentSlide)
                         next();
@@ -83,22 +80,20 @@ const Planets = () => {
             </div >
         )
     }
-
     const imageToLoadFail = 'https://media.tenor.com/mCx30liuedIAAAAd/star-wars-theres-a-problem-on-the-horizon.gif'
+
 
     return (
 
-        // <div style={{ color: 'black' }}> hola!!!!!!!!!!</div>
-        /////
-        < div className='container-fluid-body-planets' >
-            <div className='container-title-planets'>
-                <h1 className='characters-title-planets'>
-                    Planets
+        < div className='container-fluid-body-vehicles' >
+            <div className='container-title-vehicles'>
+                <h1 className='characters-title-vehicles'>
+                    Vehicles
                 </h1>
             </div>
-            <div className='container-cards-planets' >
-                <ul className='carousel-cards-wrapper-planets'>
-                    <div className='gd-carousel-wrapper-planets'>
+            <div className='container-cards' id='container-cards-vehicles' >
+                <ul className='carousel-cards-wrapper-vehicles'>
+                    <div className='gd-carousel-wrapper-vehicles'>
                         <Carousel
                             arrows={false}
                             customButtonGroup={<ButtonGroup />}
@@ -106,34 +101,32 @@ const Planets = () => {
                             swipeable={false}
                             draggable={false}
                             showDots={false}
-                            className='gd-carousel'
+                            // className='gd-carousel'
                             infinite={false}
-                            containerClass='carousel-container'
+                            // containerClass='carousel-container'
+                            // itemClass="carousel-item-padding-40-px"
                             responsive={responsive}>
-
                             {
-                                store.allPlanetsProperties.map((elements, index) => {
+                                store.allVehiclesProperties.map((elements, index) => {
                                     count += 1
                                     return (
-                                        < li key={index} className='card-information-planets'>
-                                            <div className='cards-characters-planets'>
-                                                <div className="card" id='carousel-cards-planets' style={{ width: '22rem' }}>
-                                                    <img src={`https://starwars-visualguide.com/assets/img/planets/${count}.jpg`}
-                                                        className="card-img-top-planets" alt="planets"
-                                                        onError={
-                                                            (e) => {
-                                                                e.target.src = imageToLoadFail
-                                                            }
-                                                        }
+                                        < li key={index} className='card-information-vehicles'>
+                                            <div className='cards-characters'>
+                                                <div className="card" id='carousel-cards-vehicles' style={{ width: '22rem' }}>
+                                                    <img src={`https://starwars-visualguide.com/assets/img/vehicles/${elements.uid}.jpg`}
+                                                        className="card-img-top-vehicles" alt="vehicles"
+                                                        onError={(e) => {
+                                                            e.target.src = imageToLoadFail
+                                                        }}
                                                     />
-                                                    <div className="card-body-planets">
-                                                        <h5 className="card-title-planets"> {elements.properties.name} </h5>
-                                                        <div className='allContentCard-planets'>
-                                                            <p className="card-text-planets"> Population: {elements.properties.population} </p>
-                                                            <p className="card-text-planets"> Climate: {elements.properties.climate} </p>
-                                                            <div className='butonCards-planets'>
-                                                                <button className="learn-more-planets">Learn More</button>
-                                                                <button className='favorite-icon-planets'><FavoriteIcon /></button>
+                                                    <div className="card-body-vehicles">
+                                                        <h5 className="card-title-vehicles"> {elements.name} </h5>
+                                                        <div className='allContentCard-vehicles'>
+                                                            <div className='butonCards-vehicles'>
+                                                                <button className="learn-more-vehicles">Learn More</button>
+                                                                <button className='favorite-icon-vehicles'
+                                                                ////
+                                                                ><FavoriteIcon /></button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -153,8 +146,4 @@ const Planets = () => {
     )
 }
 
-export default Planets
-
-
-
-
+export default Vehicles
