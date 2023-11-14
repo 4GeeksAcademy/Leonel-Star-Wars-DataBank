@@ -7,13 +7,15 @@ import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import { Footer } from '../component/footer';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import { element } from 'prop-types';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
 const Characters = () => {
     const { store, actions } = useContext(Context)
+    const goToCharacter = useNavigate()
     let count = 0
-    //
     const responsive = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
@@ -83,7 +85,7 @@ const Characters = () => {
                 <button className={(currentSlide + 3 === store.allCharactersProperties.length - 1) || (store.limitOfCharacters.length > 0)
                     ? 'disable-button-right' : 'button-custom-right'}
                     onClick={() => {
-                        console.log(currentSlide)
+
                         next();
                         handleClick();
                     }}
@@ -92,6 +94,14 @@ const Characters = () => {
                 </button>
             </div >
         )
+    }
+
+
+
+    const handleFavoriteIcons = (favoriteCharacter, index) => {
+        store.favoritesCharacters.push(favoriteCharacter)
+        store.isDisabledFavorite.push(index)
+        actions.shownFavoriteCharacters()
     }
 
     return (
@@ -106,6 +116,7 @@ const Characters = () => {
             <div className='container-cards' >
                 <ul className='carousel-cards-wrapper'>
                     <div className='gd-carousel-wrapper'>
+
                         <Carousel
                             arrows={false}
                             customButtonGroup={<ButtonGroup />}
@@ -123,9 +134,7 @@ const Characters = () => {
                                     count += 1
                                     if (count === 17) {
                                         count += 1
-                                        console.log('solo quiero entrar aqui cuando index sea 17')
                                     }
-                                    console.log(count)
                                     return (
                                         < li key={index} className='card-information'>
                                             <div className='cards-characters'>
@@ -137,11 +146,20 @@ const Characters = () => {
                                                             <p className="card-text"> Gender:  {elements.properties.gender} </p>
                                                             <p className="card-text"> Height:  {elements.properties.height} </p>
                                                             <div className='butonCards'>
-                                                                <button className="learn-more">Learn More</button>
-                                                                <button className='favorite-icon'
+                                                                <button className="learn-more"
                                                                     onClick={() => {
-                                                                        handleFavoriteIcons()
+                                                                        store.charactersLearnMore = elements
+                                                                        console.log(store.charactersLearnMore);
+                                                                        goToCharacter(`character/${store.charactersLearnMore.uid}`)
                                                                     }}
+                                                                >Learn More</button>
+                                                                <button
+                                                                    className={store.isDisabledFavorite.includes(index) ? 'favorite-icon-disabled' : 'favorite-icon'}
+                                                                    onClick={() => {
+                                                                        handleFavoriteIcons(elements, index)
+                                                                    }}
+
+                                                                    disabled={store.isDisabledFavorite.includes(index)}
                                                                 ><FavoriteIcon /></button>
                                                             </div>
                                                         </div>
@@ -155,9 +173,7 @@ const Characters = () => {
                         </Carousel>
                     </div>
                 </ul >
-
             </div >
-
         </div >
 
 

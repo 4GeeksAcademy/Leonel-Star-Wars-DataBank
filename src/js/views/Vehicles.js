@@ -7,6 +7,7 @@ import { Footer } from '../component/footer';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import '../../styles/vehicles.css'
+import { useNavigate } from 'react-router';
 
 const Vehicles = () => {
     const { store, actions } = useContext(Context)
@@ -46,6 +47,7 @@ const Vehicles = () => {
 
     }, [])
     let limitVehicles = store.limitsOfVehicles
+
     const getPropertiesVehicles = async () => {
         try {
             await actions.getAllVehicles()
@@ -80,9 +82,26 @@ const Vehicles = () => {
             </div >
         )
     }
+
+    const handleFavoriteVehicles = (favoriteIcons, index) => {
+        store.favoriteVehicles.push(favoriteIcons)
+        store.isDisabledFavoriteVehicles.push(index)
+        console.log(store.favoriteVehicles)
+        console.log(store.isDisabledFavoriteVehicles)
+        actions.shownFavoriteVehicles()
+    }
+
+    const getCharacteristicsVehicles = async () => {
+        try {
+            await actions.getAllPropertiesVehicles()
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }
+
     const imageToLoadFail = 'https://media.tenor.com/mCx30liuedIAAAAd/star-wars-theres-a-problem-on-the-horizon.gif'
-
-
+    const goToVehicle = useNavigate()
     return (
 
         < div className='container-fluid-body-vehicles' >
@@ -119,13 +138,23 @@ const Vehicles = () => {
                                                             e.target.src = imageToLoadFail
                                                         }}
                                                     />
-                                                    <div className="card-body-vehicles">
-                                                        <h5 className="card-title-vehicles"> {elements.name} </h5>
+                                                    <div className="card-body">
+                                                        <h5 className="card-title"> {elements.name} </h5>
                                                         <div className='allContentCard-vehicles'>
                                                             <div className='butonCards-vehicles'>
-                                                                <button className="learn-more-vehicles">Learn More</button>
-                                                                <button className='favorite-icon-vehicles'
-                                                                ////
+                                                                <button className="learn-more-vehicles"
+                                                                    onClick={() => {
+                                                                        store.vehiclesLearnMore = elements
+                                                                        console.log(store.vehiclesLearnMore)
+                                                                        getCharacteristicsVehicles()
+                                                                        setTimeout(() => {
+                                                                            goToVehicle(`/vehicles/${store.vehiclesLearnMore.uid}`)
+                                                                        }, 3000)
+                                                                    }}
+                                                                >Learn More</button>
+                                                                <button className={store.isDisabledFavoriteVehicles.includes(elements.uid) ? 'favorite-icon-disabled ' : 'favorite-icon-vehicles'}
+                                                                    onClick={() => { handleFavoriteVehicles(elements, elements.uid) }}
+                                                                    disabled={store.isDisabledFavoriteVehicles.includes(elements.uid)}
                                                                 ><FavoriteIcon /></button>
                                                             </div>
                                                         </div>

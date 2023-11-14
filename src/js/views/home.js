@@ -8,19 +8,9 @@ import Vehicles from "./Vehicles";
 
 export const Home = () => (
 	<div className="container-fluid">
-		<div className="container-navbar">
-			<Navbar />
-		</div>
-		<div className="container-body-characters">
-			<Characters />
-		</div>
-		<div className="container-planets">
-			<Planets />
-		</div>
-
-		<div className="container-vehicles">
-			<Vehicles />
-		</div>
+		<Characters />
+		<Planets />
+		<Vehicles />
 	</div>
 );
 

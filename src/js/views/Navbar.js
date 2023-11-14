@@ -1,13 +1,35 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import '../../styles/navbar.css'
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import SearchIcon from '@mui/icons-material/Search';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import LoginIcon from '@mui/icons-material/Login';
+import { Context } from '../store/appContext';
 
 const Navbar = () => {
+    const { store, actions } = useContext(Context)
+
+    const handleDeleteFavorites = (index) => {
+        store.favoritesCharacters.splice(index, 1)
+        store.isDisabledFavorite.splice(index, 1)
+        actions.shownFavoriteCharacters()
+    }
+
+    const handleDeleteFavoritesPlanets = (index) => {
+        store.favoritePlanets.splice(index, 1)
+        store.isDisabledFavoritePlanets.splice(index, 1)
+        actions.shownFavoritePlanets()
+    }
+
+    const handleDeleteFavoritesVehicles = (index) => {
+        store.favoriteVehicles.splice(index, 1)
+        store.isDisabledFavoriteVehicles.splice(index, 1)
+        actions.shownFavoriteVehicles()
+    }
+
     return (
         <div className="navbar">
             <div className="breadcrumbs">
@@ -32,16 +54,65 @@ const Navbar = () => {
                 </div>
             </div>
             <div className='button-drop-down'>
-                <div className="dropdown">
-                    <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonFavorite" data-bs-toggle="dropdown" aria-expanded="false">
-                        Favorites
-                    </button>
-                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                   
-                    </ul>
-                </div>
+                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                    Favorites
+                </button>
+                <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuClickableInside" id='containerFavoritesCharacters'>
+                    <li id='titleCharacters'> Characters</li>
+                    {store.favoritesCharacters.map((elements, index) => {
+                        return (
+                            <li key={index} className='containerFavoritesCharacters'>
+                                <p className='namesProperties'>{elements.properties.name}</p>
+                                <button className='buttonDeleteFavorites'
+                                    onClick={() => { handleDeleteFavorites(index) }}
+                                >
+                                    <DeleteOutlineIcon className='deleteIcon' />
+                                </button>
+                            </li>
+                        )
+                    }
+                    )}
+                    <li><hr className="dropdown-divider" /></li>
+                    <li id='titleCharacters'> Planets</li>
+                    {
+                        store.favoritePlanets.map((elements, index) => {
+                            return (
+                                <li key={index} className='containerFavoritesCharacters'>
+                                    <p className='namesProperties'> {elements.properties.name} </p>
+                                    <button className='buttonDeleteFavorites'
+                                        onClick={() => handleDeleteFavoritesPlanets(index)}
+                                    >
+                                        <DeleteOutlineIcon className='deleteIcon' />
+                                    </button>
+                                </li>
+
+                            )
+                        })
+                    }
+                    <li><hr className="dropdown-divider" /></li>
+                    <li id='titleCharacters'> Vehicles </li>
+                    {store.favoriteVehicles.map((elements, index) => {
+                        return (
+                            <li key={index} className='containerFavoritesCharacters'>
+                                <p className='namesProperties'> {elements.name}</p>
+                                <button className='buttonDeleteFavorites'
+                                    onClick={() => handleDeleteFavoritesVehicles(index)}
+                                >
+                                    <DeleteOutlineIcon className='deleteIcon' />
+                                </button>
+
+                            </li>
+
+                        )
+                    })}
+
+
+                </ul>
             </div>
-        </div>
+        </div >
+
+
+
     )
 }
 

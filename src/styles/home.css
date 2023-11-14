@@ -2,23 +2,29 @@
     box-sizing: border-box;
 }
 
+/* body, html {
+    margin: 0;
+    padding: 0;
+} */
+
 .container-fluid{
-    width: 100%;
+    /* margin-top: 3%;
+    width: 100%; */
     background-image: url('https://i.pinimg.com/564x/4a/a9/9b/4aa99b6ad2d2cbc7cb04a41571885a8f.jpg');
-    height: 100%;
+   
 }
 
-.container-navbar{
+
+/* .container-body-characters,
+.container-planets,
+.container-vehicles {
+    height: calc(100% - 6%); /* subtract the total margin (3% + 3%) */
+/* } */
+/* .container-planets{
     width: 100%;
-    background-color: black;
 }
 
-.container-body-characters{
-    height: 90%;
-}
-.container-planets{
-    margin-top: 40px;
+.container-vehicles{
     width: 100%;
-    height: 90%;
-
-}
+    
+}  */

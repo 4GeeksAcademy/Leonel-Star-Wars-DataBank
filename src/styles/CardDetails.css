@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Crete+Round&family=Merriweather+Sans:wght@300&family=Roboto:wght@300&display=swap');
+
+.container-background{
+    background-image: url('https://i.pinimg.com/564x/4a/a9/9b/4aa99b6ad2d2cbc7cb04a41571885a8f.jpg');
+    width: 100%;
+    height: 100%;
+    
+}
+.container_space{
+   position: relative;
+   bottom: 50%;
+}
+
+
+.container-image-characters{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 90%;
+    background-color: black;
+    left:5%;  
+}
+
+.container-card{
+   
+    margin-top: 15%;
+    font-family: 'Belanosima', sans-serif;
+    color:white;
+    margin-bottom: 10%;
+    background-color: black;
+  
+
+   
+}
+
+.container-Image{
+    margin-top: 15%;
+    margin-bottom: 10%;
+    margin-right: 5%;
+    
+}
+
+.buttonHome{
+    padding: 6px;
+    color: black;
+    background-color: #F5D949;
+    border-radius: 10px;
+    font-weight: 700;
+    margin-left: 5%;
+    margin-top: 3%;
+    margin-bottom: 2%;
+}
+
+
+.buttonHome:hover{
+    color: black;
+    background-color: rgb(255, 237, 150);
+
+}
+
+
+.characters-img-details{
+    width: 22rem;
+    height: 90%;
+}

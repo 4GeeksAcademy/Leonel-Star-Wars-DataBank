@@ -7,6 +7,8 @@ import { Footer } from '../component/footer';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import '../../styles/planets.css'
+import { useNavigate } from 'react-router-dom';
+
 
 const Planets = () => {
     const { store, actions } = useContext(Context)
@@ -84,8 +86,14 @@ const Planets = () => {
         )
     }
 
-    const imageToLoadFail = 'https://media.tenor.com/mCx30liuedIAAAAd/star-wars-theres-a-problem-on-the-horizon.gif'
+    const handleAddFavorites = (favoriteCharacter, index) => {
+        store.favoritePlanets.push(favoriteCharacter)
+        store.isDisabledFavoritePlanets.push(index)
+        actions.shownFavoritePlanets()
+    }
 
+    const imageToLoadFail = 'https://media.tenor.com/mCx30liuedIAAAAd/star-wars-theres-a-problem-on-the-horizon.gif'
+    const goToPlanets = useNavigate()
     return (
 
         // <div style={{ color: 'black' }}> hola!!!!!!!!!!</div>
@@ -119,21 +127,31 @@ const Planets = () => {
                                             <div className='cards-characters-planets'>
                                                 <div className="card" id='carousel-cards-planets' style={{ width: '22rem' }}>
                                                     <img src={`https://starwars-visualguide.com/assets/img/planets/${count}.jpg`}
-                                                        className="card-img-top-planets" alt="planets"
+                                                        className="card-img-top" alt="planets"
                                                         onError={
                                                             (e) => {
                                                                 e.target.src = imageToLoadFail
                                                             }
                                                         }
                                                     />
-                                                    <div className="card-body-planets">
-                                                        <h5 className="card-title-planets"> {elements.properties.name} </h5>
+                                                    <div className="card-body">
+                                                        <h5 className="card-title"> {elements.properties.name} </h5>
                                                         <div className='allContentCard-planets'>
-                                                            <p className="card-text-planets"> Population: {elements.properties.population} </p>
-                                                            <p className="card-text-planets"> Climate: {elements.properties.climate} </p>
+                                                            <p className="card-text"> Population: {elements.properties.population} </p>
+                                                            <p className="card-text"> Climate: {elements.properties.climate} </p>
                                                             <div className='butonCards-planets'>
-                                                                <button className="learn-more-planets">Learn More</button>
-                                                                <button className='favorite-icon-planets'><FavoriteIcon /></button>
+                                                                <button className="learn-more-planets"
+                                                                    onClick={() => {
+                                                                        store.planetsLearnMore = elements
+                                                                        goToPlanets(`/planet/${store.planetsLearnMore.uid}`)
+                                                                    }}
+                                                                >Learn More</button>
+                                                                <button className={store.isDisabledFavoritePlanets.includes(index) ? 'favorite-icon-disabled' : 'favorite-icon-planets'}
+                                                                    onClick={() => {
+                                                                        handleAddFavorites(elements, index)
+                                                                    }}
+                                                                    disabled={store.isDisabledFavoritePlanets.includes(index)}
+                                                                ><FavoriteIcon /></button>
                                                             </div>
                                                         </div>
                                                     </div>
