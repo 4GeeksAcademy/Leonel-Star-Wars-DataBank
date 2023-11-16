@@ -1,4 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Crete+Round&family=Merriweather+Sans:wght@300&family=Roboto:wght@300&display=swap');
+
+
 #containerFooter{
     background-color: rgb(0, 0, 0);
     border-top: 1px solid #48494A;
+    color: white;
+    font-family: 'Belanosima', sans-serif;
+    font-weight: 400;
+    
 }
+

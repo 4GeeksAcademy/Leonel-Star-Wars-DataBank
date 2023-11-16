@@ -63,3 +63,43 @@
     width: 22rem;
     height: 90%;
 }
+
+
+
+.skeleton-vehicles-container{
+    animation: skeleton-container  1s linear infinite alternate;
+    opacity: .7;
+    position: relative;
+    right: auto;
+    height: 50rem;
+    list-style: none;
+    border-radius: 9px;
+    background-color:#1D1E1F;
+    color:#F5D949 ;
+    width: 79rem;
+    left: 16%;
+    height: 46rem;
+    padding-top:4%;
+}
+
+
+.skeleton-text{
+    width: 90%;
+    height: .5rem;
+}
+
+.skeleton-item{
+    list-style-type: none;
+    padding: 0;
+
+}
+
+@keyframes skeleton-container {
+   0% {
+    background-color: hsl(0, 0%, 11%);
+    }
+
+    100%{
+        background-color: hsl(0, 0%, 15%)
+    }
+}

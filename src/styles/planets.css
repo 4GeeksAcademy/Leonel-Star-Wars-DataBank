@@ -138,6 +138,32 @@
     right: 4.8%;
 }
 
+.skeleton{
+    animation: card-img-skeleton 1s linear infinite alternate;
+    width: 22rem;
+    opacity: .7;
+    height: 30rem;
+    list-style: none;
+    border-radius: 9px;
+    background-color:#1D1E1F;
+    color:#F5D949 ;
+}
+.skeleton-text{
+    width: 90%;
+    height: .5rem;
+}
+
+@keyframes card-img-skeleton {
+   0% {
+    background-color: hsl(0, 0%, 11%);
+    }
+
+    100%{
+        background-color: hsl(0, 0%, 7%)
+    }
+}
+
+
 /* .container-cards .carousel-cards-wrapper{
     display: grid;
     grid-auto-flow: column;

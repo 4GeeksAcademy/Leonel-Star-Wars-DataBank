@@ -13,6 +13,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 
 const Characters = () => {
+    const [isLoading, setLoading] = useState(false)
     const { store, actions } = useContext(Context)
     const goToCharacter = useNavigate()
     let count = 0
@@ -50,26 +51,38 @@ const Characters = () => {
     }, [])
 
 
-    // const getCharacters = async () => {
-    //     try {
-    //         await actions.getTotalCharacters()
-    //         // console.log(store.totalRecordsCharacters)
-    //         console.log(`Conseguimos efectivamente los characters ${store.totalAmountCharacters}`)
-    //     }
-    //     catch (e) {
-    //         console.log(e, 'Error')
-    //     }
-    // }
-
 
     const getPropertiesCharacters = async () => {
         try {
             await actions.getAllCharacters()
+            setLoading(true)
+
         }
         catch (e) {
             console.log(e, 'Error')
         }
     }
+
+    const SkeletonLoading = () => (
+        <li className='card-information skeleton'>
+            <div className='cards-characters skeleton'>
+                <div className='card' id='carousel-cards'>
+                    <div className='card-img-top skeleton'></div>
+                    <div className='card-body skeleton'>
+                        <div className='card-title skeleton'></div>
+                        <div className='allContentCard skeleton'>
+                            <div className='skeleton skeleton-text'> </div>
+                            <div className='skeleton skeleton-text'> </div>
+                            <div className='butonCards'>
+                                <div className='learn-more skeleton'></div>
+                                <div className='favorite-icon skeleton'></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    )
 
     const ButtonGroup = ({ next, previous, goToSlide, onClick, ...rest }) => {
         const handleClick = () => {
@@ -114,9 +127,9 @@ const Characters = () => {
                 </h1>
             </div>
             <div className='container-cards' >
+
                 <ul className='carousel-cards-wrapper'>
                     <div className='gd-carousel-wrapper'>
-
                         <Carousel
                             arrows={false}
                             customButtonGroup={<ButtonGroup />}
@@ -130,45 +143,51 @@ const Characters = () => {
                             itemClass="carousel-item-padding-40-px"
                             responsive={responsive}>
                             {
-                                store.allCharactersProperties.map((elements, index) => {
-                                    count += 1
-                                    if (count === 17) {
-                                        count += 1
-                                    }
-                                    return (
-                                        < li key={index} className='card-information'>
-                                            <div className='cards-characters'>
-                                                <div className="card" id='carousel-cards' style={{ width: '22rem' }}>
-                                                    <img src={`https://starwars-visualguide.com/assets/img/characters/${count}.jpg`} className="card-img-top" alt="characters" />
-                                                    <div className="card-body">
-                                                        <h5 className="card-title"> {elements.properties.name} </h5>
-                                                        <div className='allContentCard'>
-                                                            <p className="card-text"> Gender:  {elements.properties.gender} </p>
-                                                            <p className="card-text"> Height:  {elements.properties.height} </p>
-                                                            <div className='butonCards'>
-                                                                <button className="learn-more"
-                                                                    onClick={() => {
-                                                                        store.charactersLearnMore = elements
-                                                                        console.log(store.charactersLearnMore);
-                                                                        goToCharacter(`character/${store.charactersLearnMore.uid}`)
-                                                                    }}
-                                                                >Learn More</button>
-                                                                <button
-                                                                    className={store.isDisabledFavorite.includes(index) ? 'favorite-icon-disabled' : 'favorite-icon'}
-                                                                    onClick={() => {
-                                                                        handleFavoriteIcons(elements, index)
-                                                                    }}
+                                isLoading ?
+                                    (
+                                        store.allCharactersProperties.map((elements, index) => {
+                                            count += 1
+                                            if (count === 17) {
+                                                count += 1
+                                            }
+                                            return (
+                                                < li key={index} className='card-information'>
+                                                    <div className='cards-characters'>
+                                                        <div className='card' id="carousel-cards">
+                                                            <img src={`https://starwars-visualguide.com/assets/img/characters/${count}.jpg`} className={store.showTheCharacters ? "card-img-top" : "card-img-top skeleton"} alt="characters" />
+                                                            <div className="card-body">
+                                                                <h5 className="card-title"> {elements.properties.name} </h5>
+                                                                <div className='allContentCard'>
+                                                                    <p className="card-text"> Gender:  {elements.properties.gender} </p>
+                                                                    <p className="card-text"> Height:  {elements.properties.height} </p>
+                                                                    <div className='butonCards'>
+                                                                        <button className="learn-more"
+                                                                            onClick={() => {
+                                                                                store.charactersLearnMore = elements
+                                                                                console.log(store.charactersLearnMore);
+                                                                                goToCharacter(`character/${store.charactersLearnMore.uid}`)
+                                                                            }}
+                                                                        >Learn More</button>
+                                                                        <button
+                                                                            className={store.isDisabledFavorite.includes(index) ? 'favorite-icon-disabled' : 'favorite-icon'}
+                                                                            onClick={() => {
+                                                                                handleFavoriteIcons(elements, index)
+                                                                            }}
 
-                                                                    disabled={store.isDisabledFavorite.includes(index)}
-                                                                ><FavoriteIcon /></button>
+                                                                            disabled={store.isDisabledFavorite.includes(index)}
+                                                                        ><FavoriteIcon /></button>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </li>
+                                                </li>
+                                            )
+                                        })
                                     )
-                                })
+                                    : (
+                                        Array.from({ length: 4 }).map((_, index) => <SkeletonLoading key={index} />)
+                                    )
                             }
                         </Carousel>
                     </div>

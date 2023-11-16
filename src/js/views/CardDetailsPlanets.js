@@ -37,6 +37,18 @@ const CardDetailsPlanets = () => {
                     store.allPlanetsProperties = []
                     store.countGetPlanets = 1
                     store.limitOfPlantes = ''
+                    store.allVehiclesProperties = []
+                    store.countVehiclesNewPage = 1
+                    store.pageVehicles = 1
+                    store.countGetVehiclesPages = 0
+                    store.countVehiclesNewPage = 0
+                    store.limitOfPlantes = ''
+                    store.vehiclesLearnMore = []
+                    store.allCharactersProperties = []
+                    store.countGetCharacters = 1
+                    store.limitOfCharacters = ''
+                    store.totalPagesCharacters = 0
+
 
                 }}>Go Home</button>
             </div>

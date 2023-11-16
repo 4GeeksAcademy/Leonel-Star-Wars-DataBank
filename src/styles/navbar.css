@@ -8,8 +8,9 @@
     border-bottom: 1px solid #48494A;
     /* margin-bottom: -3%; */
 }
-
-
+#breadcrumbs-container{
+    margin-left: 1%;
+}
 .logoStarWars{
     margin-left: 23%;
 }
@@ -52,6 +53,7 @@
 
 .breadcrumbs-logos{
     text-align: left;
+    
 }
  
 .breadcrumbs-logos li{
@@ -120,7 +122,7 @@
 
 #dropdownMenuClickableInside{
     margin-top: 0.7%;
-    margin-bottom: 0.7%;
+    margin-bottom: 3.5%;
     color: black;
     background-color: #F5D949;
     font-family: 'Belanosima', sans-serif; 

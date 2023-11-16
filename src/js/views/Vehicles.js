@@ -10,6 +10,7 @@ import '../../styles/vehicles.css'
 import { useNavigate } from 'react-router';
 
 const Vehicles = () => {
+    const [isLoading, setLoading] = useState(false)
     const { store, actions } = useContext(Context)
 
     let count = 0
@@ -51,11 +52,35 @@ const Vehicles = () => {
     const getPropertiesVehicles = async () => {
         try {
             await actions.getAllVehicles()
+            setLoading(true)
         }
         catch (e) {
             console.log(e, 'Error')
         }
     }
+
+
+
+    const SkeletonLoading = () => (
+        <li className='card-information skeleton'>
+            <div className='cards-characters skeleton'>
+                <div className='card' id='carousel-cards'>
+                    <div className='card-img-top skeleton'></div>
+                    <div className='card-body skeleton'>
+                        <div className='card-title skeleton'></div>
+                        <div className='allContentCard skeleton'>
+                            <div className='skeleton skeleton-text'> </div>
+                            <div className='skeleton skeleton-text'> </div>
+                            <div className='butonCards'>
+                                <div className='learn-more skeleton'></div>
+                                <div className='favorite-icon skeleton'></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    )
 
     const ButtonGroup = ({ next, previous, goToSlide, onClick, ...rest }) => {
         const handleClick = () => {
@@ -126,44 +151,50 @@ const Vehicles = () => {
                             // itemClass="carousel-item-padding-40-px"
                             responsive={responsive}>
                             {
-                                store.allVehiclesProperties.map((elements, index) => {
-                                    count += 1
-                                    return (
-                                        < li key={index} className='card-information-vehicles'>
-                                            <div className='cards-characters'>
-                                                <div className="card" id='carousel-cards-vehicles' style={{ width: '22rem' }}>
-                                                    <img src={`https://starwars-visualguide.com/assets/img/vehicles/${elements.uid}.jpg`}
-                                                        className="card-img-top-vehicles" alt="vehicles"
-                                                        onError={(e) => {
-                                                            e.target.src = imageToLoadFail
-                                                        }}
-                                                    />
-                                                    <div className="card-body">
-                                                        <h5 className="card-title"> {elements.name} </h5>
-                                                        <div className='allContentCard-vehicles'>
-                                                            <div className='butonCards-vehicles'>
-                                                                <button className="learn-more-vehicles"
-                                                                    onClick={() => {
-                                                                        store.vehiclesLearnMore = elements
-                                                                        console.log(store.vehiclesLearnMore)
-                                                                        getCharacteristicsVehicles()
-                                                                        setTimeout(() => {
+                                isLoading ? (
+
+                                    store.allVehiclesProperties.map((elements, index) => {
+                                        count += 1
+                                        return (
+                                            < li key={index} className='card-information-vehicles'>
+                                                <div className='cards-characters'>
+                                                    <div className="card" id='carousel-cards-vehicles' style={{ width: '22rem' }}>
+                                                        <img src={`https://starwars-visualguide.com/assets/img/vehicles/${elements.uid}.jpg`}
+                                                            className="card-img-top-vehicles" alt="vehicles"
+                                                            onError={(e) => {
+                                                                e.target.src = imageToLoadFail
+                                                            }}
+                                                        />
+                                                        <div className="card-body">
+                                                            <h5 className="card-title"> {elements.name} </h5>
+                                                            <div className='allContentCard-vehicles'>
+                                                                <div className='butonCards-vehicles'>
+                                                                    <button className="learn-more-vehicles"
+                                                                        onClick={() => {
+                                                                            store.vehiclesLearnMore = elements
+                                                                            console.log(store.vehiclesLearnMore)
+                                                                            getCharacteristicsVehicles()
+
                                                                             goToVehicle(`/vehicles/${store.vehiclesLearnMore.uid}`)
-                                                                        }, 3000)
-                                                                    }}
-                                                                >Learn More</button>
-                                                                <button className={store.isDisabledFavoriteVehicles.includes(elements.uid) ? 'favorite-icon-disabled ' : 'favorite-icon-vehicles'}
-                                                                    onClick={() => { handleFavoriteVehicles(elements, elements.uid) }}
-                                                                    disabled={store.isDisabledFavoriteVehicles.includes(elements.uid)}
-                                                                ><FavoriteIcon /></button>
+
+                                                                        }}
+                                                                    >Learn More</button>
+                                                                    <button className={store.isDisabledFavoriteVehicles.includes(elements.uid) ? 'favorite-icon-disabled ' : 'favorite-icon-vehicles'}
+                                                                        onClick={() => { handleFavoriteVehicles(elements, elements.uid) }}
+                                                                        disabled={store.isDisabledFavoriteVehicles.includes(elements.uid)}
+                                                                    ><FavoriteIcon /></button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </li>
+                                            </li>
+                                        )
+                                    })
+                                ) :
+                                    (
+                                        Array.from({ length: 4 }).map((_, index) => <SkeletonLoading key={index} />)
                                     )
-                                })
                             }
                         </Carousel >
                     </div >

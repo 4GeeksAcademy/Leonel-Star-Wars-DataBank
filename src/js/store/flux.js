@@ -34,7 +34,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			planetsLearnMore: [],
 			vehiclesLearnMore: [],
 			vehiclesAllInformation: [],
-
+			showTheCharacters: false,
+			showTheVehicles: false,
 
 		},
 		actions: {
@@ -108,17 +109,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					}
 					else {
-						//Getting the first 5 characters
+
 						stopFetch = 5
 					}
 
 					try {
-
-						// if (storeForCharacters.favoriteShowCharacters) {
-						// 	console.log(storeForCharacters.allCharactersProperties.length)
-						// 	console.log('le dimos a favoritos!!')
-						// 	url = `https://www.swapi.tech/api/people/${storeForCharacters.allCharactersProperties.length}`
-						// }
 
 						url = `https://www.swapi.tech/api/people/${count}`
 						console.log('seguimos llamando mas personajes!')
@@ -140,11 +135,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 							// 	console.log(storeForCharacters.favoriteShowCharacters)
 							// 	console.log('aqui no debe de aumentar los characteres!', storeForCharacters.allCharactersProperties.length)
 							// }
-
 							storeForCharacters.countGetCharacters += 1
 							count += 1
 
-
+							storeForCharacters.showTheCharacters = true
 
 						}
 						else {
@@ -210,6 +204,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 							storeForPlanets.countGetPlanets += 1
 							count += 1
 							console.log(jsonReponse.result)
+							console.log('Tenemos el primer fetch!')
+
 						}
 						else {
 							const jsonReponse = await response.json()
@@ -335,6 +331,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log(jsonReponse)
 						console.log('conseguimnos el response')
 						setStore({ ...storeGetVehicles, vehiclesAllInformation: jsonReponse.result })
+						storeGetVehicles.showTheVehicles = true
 					}
 
 					else {

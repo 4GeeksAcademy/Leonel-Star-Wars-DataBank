@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Planets = () => {
+    const [isLoading, setLoading] = useState(false)
     const { store, actions } = useContext(Context)
     let count = 0
 
@@ -49,11 +50,31 @@ const Planets = () => {
 
     }, [])
 
-
+    const SkeletonLoading = () => (
+        <li className='card-information skeleton'>
+            <div className='cards-characters skeleton'>
+                <div className='card' id='carousel-cards'>
+                    <div className='card-img-top skeleton'></div>
+                    <div className='card-body skeleton'>
+                        <div className='card-title skeleton'></div>
+                        <div className='allContentCard skeleton'>
+                            <div className='skeleton skeleton-text'> </div>
+                            <div className='skeleton skeleton-text'> </div>
+                            <div className='butonCards'>
+                                <div className='learn-more skeleton'></div>
+                                <div className='favorite-icon skeleton'></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    )
 
     const getPropertiesPlanets = async () => {
         try {
             await actions.getAllPlanets()
+            setLoading(true)
         }
         catch (e) {
             console.log(e, 'Error')
@@ -120,46 +141,51 @@ const Planets = () => {
                             responsive={responsive}>
 
                             {
-                                store.allPlanetsProperties.map((elements, index) => {
-                                    count += 1
-                                    return (
-                                        < li key={index} className='card-information-planets'>
-                                            <div className='cards-characters-planets'>
-                                                <div className="card" id='carousel-cards-planets' style={{ width: '22rem' }}>
-                                                    <img src={`https://starwars-visualguide.com/assets/img/planets/${count}.jpg`}
-                                                        className="card-img-top" alt="planets"
-                                                        onError={
-                                                            (e) => {
-                                                                e.target.src = imageToLoadFail
+                                isLoading ? (
+                                    store.allPlanetsProperties.map((elements, index) => {
+                                        count += 1
+                                        return (
+                                            < li key={index} className='card-information-planets'>
+                                                <div className='cards-characters-planets'>
+                                                    <div className="card" id='carousel-cards-planets' style={{ width: '22rem' }}>
+                                                        <img src={`https://starwars-visualguide.com/assets/img/planets/${count}.jpg`}
+                                                            className="card-img-top" alt="planets"
+                                                            onError={
+                                                                (e) => {
+                                                                    e.target.src = imageToLoadFail
+                                                                }
                                                             }
-                                                        }
-                                                    />
-                                                    <div className="card-body">
-                                                        <h5 className="card-title"> {elements.properties.name} </h5>
-                                                        <div className='allContentCard-planets'>
-                                                            <p className="card-text"> Population: {elements.properties.population} </p>
-                                                            <p className="card-text"> Climate: {elements.properties.climate} </p>
-                                                            <div className='butonCards-planets'>
-                                                                <button className="learn-more-planets"
-                                                                    onClick={() => {
-                                                                        store.planetsLearnMore = elements
-                                                                        goToPlanets(`/planet/${store.planetsLearnMore.uid}`)
-                                                                    }}
-                                                                >Learn More</button>
-                                                                <button className={store.isDisabledFavoritePlanets.includes(index) ? 'favorite-icon-disabled' : 'favorite-icon-planets'}
-                                                                    onClick={() => {
-                                                                        handleAddFavorites(elements, index)
-                                                                    }}
-                                                                    disabled={store.isDisabledFavoritePlanets.includes(index)}
-                                                                ><FavoriteIcon /></button>
+                                                        />
+                                                        <div className="card-body">
+                                                            <h5 className="card-title"> {elements.properties.name} </h5>
+                                                            <div className='allContentCard-planets'>
+                                                                <p className="card-text"> Population: {elements.properties.population} </p>
+                                                                <p className="card-text"> Climate: {elements.properties.climate} </p>
+                                                                <div className='butonCards-planets'>
+                                                                    <button className="learn-more-planets"
+                                                                        onClick={() => {
+                                                                            store.planetsLearnMore = elements
+                                                                            goToPlanets(`/planet/${store.planetsLearnMore.uid}`)
+                                                                        }}
+                                                                    >Learn More</button>
+                                                                    <button className={store.isDisabledFavoritePlanets.includes(index) ? 'favorite-icon-disabled' : 'favorite-icon-planets'}
+                                                                        onClick={() => {
+                                                                            handleAddFavorites(elements, index)
+                                                                        }}
+                                                                        disabled={store.isDisabledFavoritePlanets.includes(index)}
+                                                                    ><FavoriteIcon /></button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </li>
+                                            </li>
+                                        )
+                                    })
+                                ) :
+                                    (
+                                        Array.from({ length: 4 }).map((_, index) => <SkeletonLoading key={index} />)
                                     )
-                                })
                             }
                         </Carousel >
                     </div >

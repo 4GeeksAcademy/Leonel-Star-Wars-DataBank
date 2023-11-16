@@ -32,7 +32,7 @@ const Navbar = () => {
 
     return (
         <div className="navbar">
-            <div className="breadcrumbs">
+            <div className="breadcrumbs" id='breadcrumbs-container'>
                 <ul className="breadcrumbs-logos">
                     <li className='starwars-tv'><a href="https://www.tiktok.com/@starwars"><img src="https://lumiere-a.akamaihd.net/v1/images/tiktok-logo-white_dd1a4867.svg?region=0%2C0%2C100%2C100" className="tikTokIcon" /></a></li>
                     <li className='starwars-tv'><a href="https://www.instagram.com/starwars/"><InstagramIcon className="instagramIcon" /></a> </li>

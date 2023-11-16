@@ -8,8 +8,7 @@
 } */
 
 .container-fluid{
-    /* margin-top: 3%;
-    width: 100%; */
+    padding-bottom: 3%;
     background-image: url('https://i.pinimg.com/564x/4a/a9/9b/4aa99b6ad2d2cbc7cb04a41571885a8f.jpg');
    
 }
