@@ -15,20 +15,6 @@
 
 
 
-/* .container-cards{
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 73vh;
-    max-width: 1890px;
-    width: 100%;
-    position: relative;
-    left: 10px;
-   
-} */
-
-
 #carousel-cards{
     list-style: none;
     border-radius: 9px;
@@ -175,6 +161,31 @@
     top: 55%;
     right: 4.8%;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .container-cards{
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 73vh;
+    max-width: 1890px;
+    width: 100%;
+    position: relative;
+    left: 10px;
+   
+} */
 
 
 

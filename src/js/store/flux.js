@@ -39,70 +39,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 		},
 		actions: {
-			// ////////////////////// tenerlo y revisarlo por si acaso // //////////////////////
-			// getTotalCharacters: async () => {
-			// 	let count = 1
-			// 	const charactersData = []
-			// 	let stopFetch = 0
 
-			// 	do {
-
-			// 		let url = `https://www.swapi.tech/api/people`
-			// 		try {
-			// 			const response = await fetch(url, {
-			// 				method: 'GET',
-			// 				headers: {
-			// 					'Content-type': 'aplication/json'
-			// 				}
-			// 			})
-
-			// 			if (response.ok) {
-			// 				const jsonReponse = await response.json()
-			// 				const store = getStore()
-			// 				setStore({ ...store, totalPagesCharacters: jsonReponse.total_pages })
-			// 				setStore({ ...store, totalAmountCharacters: jsonReponse.total_records })
-			// 				setStore({ ...store, urlApi: jsonReponse.next })
-			// 				count += 1
-			// 				console.log(count)
-			// 			}
-			// 			else {
-			// 				throw new Error('The requested it was fail! Check it out!')
-			// 			}
-			// 		}
-
-			// 		catch (error) {
-			// 			console.log('Requested Failed', error)
-			// 		}
-
-			// 		// hacer primer un get de los primeros y luego mandar otro get para que me agarre los demas characters! idea interesante para hacer!
-			// 		const store = getStore()
-			// 		console.log(store.totalPagesCharacters)
-			// 		stopFetch = store.totalPagesCharacters
-			// 	} while (count <= 1)
-
-			// 	const store = getStore()
-			// 	console.log(charactersData)
-			// 	setStore({ ...store, characters: charactersData })
-			// },
-			// ////////////////////// tenerlo y revisarlo por si acaso // //////////////////////
-
-
-
-			///GET FOR CHARACTERS
 			getAllCharacters: async () => {
 				let url = ''
 				const storeForCharacters = getStore()
 				let count = 1
-				//starts with [] but in the end of the bucle im adding the new characters!
 				const charactersAllData = [...storeForCharacters.allCharactersProperties]
 				let stopFetch = 0
 				do {
 					if (Object.keys(storeForCharacters.allCharactersProperties).length > 0) {
-						//this IF helps me to call the api one time once I got the first five characters!
 						stopFetch = 1
-						// console.log(storeForCharacters.countGetCharacters)
 						count = storeForCharacters.countGetCharacters
-						//this condition is because the number 17 doesn't exist 
 						if (count === 17) {
 							count += 1
 							storeForCharacters.countGetCharacters += 1
@@ -129,12 +76,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						if (response.ok) {
 							const jsonReponse = await response.json()
 							charactersAllData.push(jsonReponse.result)
-							// console.log(jsonReponse.result._id)
-							// if (storeForCharacters.favoriteShowCharacters) {
-							// 	storeForCharacters.favoriteShowCharacters = false
-							// 	console.log(storeForCharacters.favoriteShowCharacters)
-							// 	console.log('aqui no debe de aumentar los characteres!', storeForCharacters.allCharactersProperties.length)
-							// }
+
 							storeForCharacters.countGetCharacters += 1
 							count += 1
 
@@ -162,30 +104,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				} while (count <= stopFetch)
 
-				// console.log(charactersAllData)
-				//in this part im rewritting the characters that im reaching!
 				setStore({ ...storeForCharacters, allCharactersProperties: charactersAllData })
-				// console.log(storeForCharacters.allCharactersProperties)
 			},
 
-			///GET FOR PLANETS
 			getAllPlanets: async () => {
 				const storeForPlanets = getStore()
 				let count = 1
-				//starts with [] but in the end of the bucle im adding the new characters!
 				const planetsAllData = [...storeForPlanets.allPlanetsProperties]
 				let stopFetch = 0
 				do {
 					if (Object.keys(storeForPlanets.allPlanetsProperties).length > 0) {
-						//this IF helps me to call the api one time once I got the first five characters!
 						stopFetch = 1
 						console.log(storeForPlanets.countGetPlanets)
 						count = storeForPlanets.countGetPlanets
-						//this condition is because the number 17 doesn't exist 
-
 					}
 					else {
-						//Getting the first 5 planets
 						stopFetch = 5
 					}
 					let url = `https://www.swapi.tech/api/planets/${count}`
@@ -230,25 +163,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} while (count <= stopFetch)
 
 
-				//in this part im rewritting the characters that im reaching!
 				setStore({ ...storeForPlanets, allPlanetsProperties: planetsAllData })
-				// console.log(storeForPlanets.allPlanetsProperties)
 
 			},
-
-			///GET FOR VEHICLES
 
 			getAllVehicles: async () => {
 				const storeForVehicles = getStore()
 				let count = 1
-				//starts with [] but in the end of the bucle im adding the new characters!
 				const vehiclesAllData = [...storeForVehicles.allVehiclesProperties]
 				let stopFetch = 0
 				do {
 					if (Object.keys(storeForVehicles.allVehiclesProperties).length > 0) {
-						//this IF helps me to call the api one time once I got the first five characters!
 						stopFetch = 1
-						// console.log(storeForVehicles.countGetVehiclesPages)
 						if (storeForVehicles.countVehiclesNewPage > 9) {
 							storeForVehicles.pageVehicles += 1
 							count = 1
@@ -258,7 +184,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					}
 					else {
-						//Getting the first 5 Vehicles
 						stopFetch = 5
 					}
 					let url = `https://www.swapi.tech/api/vehicles?page=${storeForVehicles.pageVehicles}&limit=10`
@@ -281,7 +206,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 							storeForVehicles.countVehiclesNewPage += 1
 
 							storeForVehicles.limitsOfVehicles = jsonReponse.total_records
-							// console.log(storeForVehicles.limitsOfVehicles)
 						}
 						else {
 							const jsonReponse = await response.json()
@@ -304,8 +228,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				} while (count <= stopFetch)
 
-
-				//in this part im rewritting the characters that im reaching!
 				setStore({ ...storeForVehicles, allVehiclesProperties: vehiclesAllData })
 				console.log(`esta es la cantidad de carros por ahora! ${storeForVehicles.allVehiclesProperties.length - 1}`)
 			},
@@ -365,3 +287,57 @@ const getState = ({ getStore, getActions, setStore }) => {
 };
 
 export default getState;
+
+
+
+
+
+
+
+
+// ////////////////////// tenerlo y revisarlo por si acaso // //////////////////////
+// getTotalCharacters: async () => {
+// 	let count = 1
+// 	const charactersData = []
+// 	let stopFetch = 0
+
+// 	do {
+
+// 		let url = `https://www.swapi.tech/api/people`
+// 		try {
+// 			const response = await fetch(url, {
+// 				method: 'GET',
+// 				headers: {
+// 					'Content-type': 'aplication/json'
+// 				}
+// 			})
+
+// 			if (response.ok) {
+// 				const jsonReponse = await response.json()
+// 				const store = getStore()
+// 				setStore({ ...store, totalPagesCharacters: jsonReponse.total_pages })
+// 				setStore({ ...store, totalAmountCharacters: jsonReponse.total_records })
+// 				setStore({ ...store, urlApi: jsonReponse.next })
+// 				count += 1
+// 				console.log(count)
+// 			}
+// 			else {
+// 				throw new Error('The requested it was fail! Check it out!')
+// 			}
+// 		}
+
+// 		catch (error) {
+// 			console.log('Requested Failed', error)
+// 		}
+
+// 		// hacer primer un get de los primeros y luego mandar otro get para que me agarre los demas characters! idea interesante para hacer!
+// 		const store = getStore()
+// 		console.log(store.totalPagesCharacters)
+// 		stopFetch = store.totalPagesCharacters
+// 	} while (count <= 1)
+
+// 	const store = getStore()
+// 	console.log(charactersData)
+// 	setStore({ ...store, characters: charactersData })
+// },
+// ////////////////////// tenerlo y revisarlo por si acaso // //////////////////////

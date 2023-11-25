@@ -4,10 +4,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Context } from "../store/appContext";
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
-import { Footer } from '../component/footer';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import { element } from 'prop-types';
 import { Link, useNavigate } from 'react-router-dom';
 
 
@@ -118,8 +116,6 @@ const Characters = () => {
     }
 
     return (
-        // <div> hola</div>
-        /////
         < div className='container-fluid-body' >
             <div className='container-title'>
                 <h1 className='characters-title'>
@@ -200,6 +196,15 @@ const Characters = () => {
 }
 
 export default Characters
+
+
+
+
+
+
+
+
+
 
 
 

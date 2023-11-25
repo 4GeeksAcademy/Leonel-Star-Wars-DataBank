@@ -3,7 +3,6 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Context } from "../store/appContext";
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
-import { Footer } from '../component/footer';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import '../../styles/vehicles.css'
